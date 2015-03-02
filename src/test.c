@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <ctoolx_math/math.h>
+#include <cx_math/math.h>
 
 #include <netdb.h>
 #include <sys/socket.h>
