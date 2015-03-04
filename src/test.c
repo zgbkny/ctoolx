@@ -147,13 +147,15 @@ int gzip_test() {
 	gettimeofday(&tv, NULL);
 
 	int i = 0, index = 0, end = 0, k = 0;
-	for ( ; i < 100; i++) {
+	for ( ; i < 1; i++) {
+
 		if (ngx_http_prefetch_gzip_decompress(cbuf, clen, ubuf, &flen) != Z_OK) {
+		//if (uncompress(ubuf, &flen, cbuf, clen) != Z_OK) {
 			return -1;
 		}
 		k = flen;
 		temp = ubuf;
-		if (1) {
+		if (0) {
 			while (1) {
 				temp += index;
 				k -= index;
