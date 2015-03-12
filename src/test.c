@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <zlib.h>
 #include <cx_math/math.h>
+#include <cx_thread/cx_thread.h>
 
 #include <netdb.h>
 #include <sys/socket.h>
@@ -181,12 +182,35 @@ int gzip_test() {
 	return clen;
 }
 
+void *process(void *arg) 
+{
+    printf("thread 0x%x working ok task %d\n", pthread_self(), *(int *)arg);
+    sleep(1);
+    printf("task %d is end\n", *(int *)arg);
+    return NULL;
+}
+
+void test_thread()
+{
+    cx_thread_pool_t    *tpt = cx_thread_pool_create(1, 3, 20);
+
+    int i = 0;
+    int *num = (int *)malloc(sizeof(int) * 20);
+    for ( ; i < 20; i++) {
+        num[i] = i;
+        printf("add task %d\n", i);
+        cx_thread_pool_add(tpt, process, (void *)&num[i]);
+    }
+    sleep(20);
+    cx_thread_pool_destroy(tpt);
+}
+
 int main() 
 {
 
-	int ret = gzip_test();
-
-	printf("ret:%d\n", ret);
+	//int ret = gzip_test();
+	test_thread();
+	//printf("ret:%d\n", ret);
 	return 0;
 }
 

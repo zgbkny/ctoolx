@@ -6,7 +6,13 @@
 #define CTOOLX_CX_THREAD_POOL_H_
 
 // include all header file which we need in thread pool
+#include <pthread.h>
+#include <errno.h>
 
+
+#define bool    int
+#define FALSE   0
+#define TRUE    1
  
 
 typedef struct {

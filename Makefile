@@ -1,8 +1,8 @@
 EXECUTABLE :=  test 							# 可执行文件名
 LIBDIR:=              							# 静态库目录
 LIBS := pthread crypt z      					# 静态库文件名
-INCLUDES:= . src src/cx_math 			# 头文件目录
-SRCDIR:= src src/cx_math    			# 除了当前目录外，其他的源代码文件目录
+INCLUDES:= . src src/cx_math src/cx_thread			# 头文件目录
+SRCDIR:= src src/cx_math src/cx_thread  			# 除了当前目录外，其他的源代码文件目录
 TEST := test
 
 RM-F := rm -f
